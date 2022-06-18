@@ -1,6 +1,7 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // page components
+import Navbar from './components/Navbar';
 import Home from './pages/home/Home';
 import Create from './pages/create/Create';
 import Search from './pages/search/Search';
@@ -13,6 +14,8 @@ function App() {
   return (
     <div className='App'>
       <BrowserRouter>
+        {/* Navbar는 Link가 안에 있기 때문에 BrowserRouter안에 사용해야한다. */}
+        <Navbar />
         <Switch>
           <Route>
             <Home exact path='/' />
