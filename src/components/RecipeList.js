@@ -13,7 +13,7 @@ export default function RecipeList({ recipes }) {
           <p>만드는 시간 {recipe.cookingTime}</p>
           {/* substring은 새로운 String을 generate한다. */}
           <div>{recipe.method.substring(0, 100)}...</div>
-          <Link to={`/recipes/${recipe.id}`}>요리법</Link>
+          <Link to={`/recipes/${recipe.id}`}>요리법 보기</Link>
         </div>
       ))}
     </div>

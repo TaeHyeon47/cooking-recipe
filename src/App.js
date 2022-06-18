@@ -17,8 +17,8 @@ function App() {
         {/* Navbar는 Link가 안에 있기 때문에 BrowserRouter안에 사용해야한다. */}
         <Navbar />
         <Switch>
-          <Route>
-            <Home exact path='/' />
+          <Route exact path='/'>
+            <Home />
           </Route>
           <Route path='/create'>
             <Create />
