@@ -24,6 +24,7 @@ export const useFetch = (url, method = 'GET') => {
       setIsPending(true);
 
       try {
+        // post request여도 response object는 준다.
         const res = await fetch(url, {
           ...fetchOptions,
           signal: controller.signal,

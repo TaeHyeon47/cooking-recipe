@@ -2,8 +2,9 @@
 import './Create.css';
 
 import React from 'react';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useFetch } from '../../hooks/useFetch';
+import { useHistory } from 'react-router-dom';
 
 export default function Create() {
   const [title, setTitle] = useState('');
@@ -16,6 +17,7 @@ export default function Create() {
     'http://localhost:3000/recipes',
     'POST'
   );
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,6 +41,13 @@ export default function Create() {
     setNewIngredient('');
     ingredientInput.current.focus();
   };
+
+  // post fetch에서 data를 받았을 때 '/'로 redirect 이동
+  useEffect(() => {
+    if (data) {
+      history.push('/');
+    }
+  }, [data, history]);
 
   return (
     <div className='create'>
