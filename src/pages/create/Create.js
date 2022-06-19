@@ -3,6 +3,7 @@ import './Create.css';
 
 import React from 'react';
 import { useState, useRef } from 'react';
+import { useFetch } from '../../hooks/useFetch';
 
 export default function Create() {
   const [title, setTitle] = useState('');
@@ -11,10 +12,20 @@ export default function Create() {
   const [newIngredient, setNewIngredient] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const ingredientInput = useRef(null);
+  const { postData, data, error } = useFetch(
+    'http://localhost:3000/recipes',
+    'POST'
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(title, method, cookingTime, ingredients);
+    // Json-server는 자동적으로 Id를 추가해주기 때문에 ID를 입력할 필요가 없다.
+    postData({
+      title,
+      ingredients,
+      method,
+      cookingTime: cookingTime + ' 분',
+    });
   };
 
   const handleAdd = (e) => {
