@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 // styles
-import './Searchnar.css';
+import './Searchbar.css';
 
 import React from 'react';
 
