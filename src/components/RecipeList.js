@@ -4,6 +4,11 @@ import './RecipeList.css';
 import React from 'react';
 
 export default function RecipeList({ recipes }) {
+  if (recipes.length === 0) {
+    // return이 되는 순간 코드는 멈춘다.
+    return <div className='error'>검색 결과가 없습니다.</div>;
+  }
+
   return (
     // Home.js에 'data &&'의 분기분이 있기 때문에 별도로 recipes &&를 사용할 필요가 없다.
     <div className='recipe-list'>
