@@ -18,6 +18,7 @@ export const useFetch = (url, method = 'GET') => {
   };
 
   useEffect(() => {
+    //AbortController를 통신에 필요한 controller 객체를 준다.
     const controller = new AbortController();
 
     const fetchData = async (fetchOptions) => {

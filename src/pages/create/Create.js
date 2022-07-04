@@ -21,8 +21,9 @@ export default function Create() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Json-server는 자동적으로 Id를 추가해주기 때문에 ID를 입력할 필요가 없다.
+    //useFetch에서 디스트럭쳐링한 postData에 파라미터로 데이터를 전달
     postData({
+      // Json-server는 자동적으로 Id를 추가해주기 때문에 ID를 입력할 필요가 없다.
       title,
       ingredients,
       method,
@@ -95,7 +96,7 @@ export default function Create() {
         </label>
 
         <label>
-          <span>요리시간:</span>
+          <span>요리 시간</span>
           <input
             type='text'
             onChange={(e) => setCookingTime(e.target.value)}
