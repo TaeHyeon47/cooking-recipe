@@ -7,12 +7,14 @@ import Searchbar from './Searchbar';
 import './Navbar.css';
 
 export default function Navbar() {
-  const { color } = useTheme();
+  // changeColor 함수를 디스트럭쳐링.
+  const { color, changeColor } = useTheme();
 
   return (
     // 인라인 스타일로 컬러를 넣어줌.
     <div className='navbar' style={{ background: color }}>
-      <nav>
+      {/* changeColor 함수에 pink parameter 전달 */}
+      <nav onClick={() => changeColor('pink')}>
         <Link to='/' className='brand'>
           <h1>요리 레시피 모음</h1>
         </Link>

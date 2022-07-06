@@ -5,9 +5,11 @@ import { createContext, useReducer } from 'react';
 // context object를 ThemeContext으로 export 한다.
 export const ThemeContext = createContext();
 
+// dispatch function에서 호출되는 함수.
 const themeReducer = (state, action) => {
   switch (action.type) {
     case 'CHANGE_COLOR':
+      // ...state의 color 값이 color: action.payload로 override 됨.
       return { ...state, color: action.payload };
     default:
       return state;
@@ -22,7 +24,6 @@ export function ThemeProvider({ children }) {
   //? reducer function 역할
   // reducer function which is going to be responsible for updating our state and keeping all of that update logic together in one place.
   // And it also lets us specify an initial state value as well.
-
   //? reducer function 사용법
   // 1. first argumen로 함수의 이름을 작성한다.
   // 2. second argument로 initial state를 입력한다.
@@ -32,7 +33,15 @@ export function ThemeProvider({ children }) {
   });
 
   const changeColor = (color) => {
-    dispatch({ type: 'CHANGE_COLOR', paylaod: color });
+    //? dispatch 사용법
+    // dispatch function takes in an object that's an argument which is referred to as the dispatch action.
+    // on the action object, we can specify two properties a type property and a payload property.
+    // 1. The type property basically describes the type of state change we want to make.
+    // 2. The payload is any data we want to base the state change on.
+    //? dispatch 데이터가 전달되는 곳
+    // When we use this dispatch function, React looks at the reducer function associated
+    // with that dispatch, and he finds our 'themeReducer' function and then it fires that function to make the state change inside it.
+    dispatch({ type: 'CHANGE_COLOR', payload: color });
   };
 
   // Context Api를 별도의 함수로 만드는 이유는 커스텀 로직을 추가할 수 있기 때문이다.
@@ -49,6 +58,9 @@ export function ThemeProvider({ children }) {
     // We might need to update some state values so it keeps everything together in one place, makes it easy
     // to update, stay in multiple ways at once, and it's a much more reliable way of handling slightly more complex states.
     // 일반적으로 간단한 상태관리는 useState를 사용하며, 복잡한 상태관리에는 reducer를 사용한다.
+
+    // ...state = color, changeColor / Navbar에서 디스트럭쳐링할 수 있다.
+    // Navbar에서 pink 값이 전달된 이후에 ...state로 다시한번 값이 아래로 전달된다.
     <ThemeContext.Provider value={{ ...state, changeColor }}>
       {children}
     </ThemeContext.Provider>
