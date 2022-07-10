@@ -29,7 +29,7 @@ export function ThemeProvider({ children }) {
   // 2. second argument로 initial state를 입력한다.
   // useState와 같이 state는 초기값, dispatch는 값을 변경할 때 사용한다.
   const [state, dispatch] = useReducer(themeReducer, {
-    color: 'blue',
+    color: '#58429c',
   });
 
   const changeColor = (color) => {

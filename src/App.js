@@ -6,6 +6,7 @@ import Home from './pages/home/Home';
 import Create from './pages/create/Create';
 import Search from './pages/search/Search';
 import Recipe from './pages/recipe/Recipe';
+import ThemeSelector from './components/ThemeSelector';
 
 // styles
 import './App.css';
@@ -16,6 +17,7 @@ function App() {
       <BrowserRouter>
         {/* Navbar는 Link가 안에 있기 때문에 BrowserRouter안에 사용해야한다. */}
         <Navbar />
+        <ThemeSelector />
         <Switch>
           <Route exact path='/'>
             <Home />
