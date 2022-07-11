@@ -11,6 +11,8 @@ const themeReducer = (state, action) => {
     case 'CHANGE_COLOR':
       // ...state의 color 값이 color: action.payload로 override 됨.
       return { ...state, color: action.payload };
+    case 'CHANGE_MODE':
+      return { ...state, mode: action.payload };
     default:
       return state;
   }
@@ -30,6 +32,7 @@ export function ThemeProvider({ children }) {
   // useState와 같이 state는 초기값, dispatch는 값을 변경할 때 사용한다.
   const [state, dispatch] = useReducer(themeReducer, {
     color: '#58429c',
+    mode: 'dark',
   });
 
   const changeColor = (color) => {
@@ -42,6 +45,10 @@ export function ThemeProvider({ children }) {
     // When we use this dispatch function, React looks at the reducer function associated
     // with that dispatch, and he finds our 'themeReducer' function and then it fires that function to make the state change inside it.
     dispatch({ type: 'CHANGE_COLOR', payload: color });
+  };
+
+  const changeMode = (mode) => {
+    dispatch({ type: 'CHANGE_MODE', payload: mode });
   };
 
   // Context Api를 별도의 함수로 만드는 이유는 커스텀 로직을 추가할 수 있기 때문이다.
@@ -61,7 +68,7 @@ export function ThemeProvider({ children }) {
 
     // ...state = color, changeColor / Navbar에서 디스트럭쳐링할 수 있다.
     // Navbar에서 pink 값이 전달된 이후에 ...state로 다시한번 값이 아래로 전달된다.
-    <ThemeContext.Provider value={{ ...state, changeColor }}>
+    <ThemeContext.Provider value={{ ...state, changeColor, changeMode }}>
       {children}
     </ThemeContext.Provider>
   );
