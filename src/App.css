@@ -2,3 +2,7 @@
   /*? "min-height: 100%;" 다크, 라이트 모드를 위해 필요함 */
   min-height: 100%;
 }
+
+.App.dark {
+  background: #333;
+}

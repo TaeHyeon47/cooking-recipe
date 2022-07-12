@@ -10,10 +10,13 @@ import ThemeSelector from './components/ThemeSelector';
 
 // styles
 import './App.css';
+import { useTheme } from './hooks/useTheme';
 
 function App() {
+  const { mode } = useTheme();
+
   return (
-    <div className='App'>
+    <div className={`App ${mode}`}>
       <BrowserRouter>
         {/* Navbar는 Link가 안에 있기 때문에 BrowserRouter안에 사용해야한다. */}
         <Navbar />
